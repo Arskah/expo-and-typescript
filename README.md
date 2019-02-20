@@ -80,9 +80,3 @@ yarn add --dev --exact @types/react @types/react-native @types/expo @types/expo_
 ```
 
 Since Expo is evolving quickly it is not uncommon that the type definitions are outdated or simply missing. [AudioScreen.tsx line 59](https://github.com/janaagaard75/expo-and-typescript/blob/master/src/AudioScreen.tsx#L59) shows how to deal with an incorrect type definition and [MapViewScreen.tsx line 5] show how to deal with missing type definitions.
-
-## Similar Projects
-
-* [expo-ts-example](https://github.com/dalcib/expo-ts-example), the basis for this project
-* [TypeScript-React-Native-Starter](https://github.com/Microsoft/TypeScript-React-Native-Starter)
-* [react-native-typescript-starter](https://github.com/cbrevik/react-native-typescript-starter)
