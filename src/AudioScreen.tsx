@@ -1,9 +1,9 @@
-import * as React from 'react'
-import { Component } from 'react'
-import { Linking } from 'react-native'
-import { Text } from 'react-native'
-import { View } from 'react-native'
-import { Audio } from 'expo'
+import * as React from 'react';
+import { Component } from 'react';
+import { Linking } from 'react-native';
+import { Text } from 'react-native';
+import { View } from 'react-native';
+import { Audio } from 'expo';
 
 interface State {
   soundLoaded: boolean
@@ -11,24 +11,24 @@ interface State {
 
 export class AudioScreen extends Component<{}, State> {
   constructor(props: {}, context?: any) {
-    super(props, context)
+    super(props, context);
 
     this.state = {
-      soundLoaded: false
-    }
+      soundLoaded: false,
+    };
 
-    this.playSound()
+    this.playSound();
   }
 
   public static navigationOptions = {
-    title: 'Audio'
-  }
+    title: 'Audio',
+  };
 
   public render() {
     if (!this.state.soundLoaded) {
       return (
         <Text>Loading sound...</Text>
-      )
+      );
     }
 
     return (
@@ -36,7 +36,7 @@ export class AudioScreen extends Component<{}, State> {
         style={{
           alignItems: 'center',
           flex: 1,
-          justifyContent: 'center'
+          justifyContent: 'center',
         }}
       >
         <Text>
@@ -51,18 +51,17 @@ export class AudioScreen extends Component<{}, State> {
           .
         </Text>
       </View>
-    )
+    );
   }
 
   private async playSound() {
-    // The type definitions should be updated to reflect the new name, `createAsync`. Pull request for updating the documentation at https://github.com/expo/expo-docs/pull/405.
     await (Audio.Sound as any).createAsync(
       require('../assets/bensound-thejazzpiano.mp3'),
-      { shouldPlay: true }
-    )
+      { shouldPlay: true },
+    );
 
     this.setState({
-      soundLoaded: true
-    })
+      soundLoaded: true,
+    });
   }
 }

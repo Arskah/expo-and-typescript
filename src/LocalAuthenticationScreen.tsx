@@ -1,9 +1,9 @@
-import * as React from 'react'
-import { Button } from 'react-native'
-import { Component } from 'react'
-import { LocalAuthentication } from 'expo'
-import { Text } from 'react-native'
-import { View } from 'react-native'
+import * as React from 'react';
+import { Button } from 'react-native';
+import { Component } from 'react';
+import { LocalAuthentication } from 'expo';
+import { Text } from 'react-native';
+import { View } from 'react-native';
 
 interface State {
   authenticated: boolean
@@ -13,15 +13,15 @@ interface State {
 
 export class LocalAuthenticationScreen extends Component<{}, State> {
   constructor(props: {}, context?: any) {
-    super(props, context)
+    super(props, context);
 
     this.state = {
       authenticated: false,
       authenticationError: 'n/a',
-      hasHardware: undefined
-    }
+      hasHardware: undefined,
+    };
 
-    this.updateState()
+    this.updateState();
   }
 
   public render() {
@@ -32,34 +32,33 @@ export class LocalAuthenticationScreen extends Component<{}, State> {
         <Text>Authentication error: {this.state.authenticationError}</Text>
         <Button
           onPress={() => this.authenticate()}
-          title="Scan"
+          title='Scan'
         />
       </View>
-    )
+    );
   }
 
   private async authenticate() {
-    const authenticated = await LocalAuthentication.authenticateAsync('Authentication message')
+    const authenticated = await LocalAuthentication.authenticateAsync('Authentication message');
 
     if (authenticated.success) {
       this.setState({
-        authenticationError: 'None'
-      })
-    }
-    else {
+        authenticationError: 'None',
+      });
+    } else {
       this.setState({
-        authenticationError: authenticated.error
-      })
+        authenticationError: authenticated.error,
+      });
     }
 
     this.setState({
-      authenticated: authenticated.success
-    })
+      authenticated: authenticated.success,
+    });
   }
 
   private async updateState() {
     this.setState({
-      hasHardware: await LocalAuthentication.hasHardwareAsync()
-    })
+      hasHardware: await LocalAuthentication.hasHardwareAsync(),
+    });
   }
 }

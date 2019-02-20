@@ -1,9 +1,9 @@
-import * as React from 'react'
-import { Component } from 'react'
-import { Constants } from 'expo'
-import { NavigationScreenProps } from 'react-navigation'
-import { Text } from 'react-native'
-import { View } from 'react-native'
+import * as React from 'react';
+import { Component } from 'react';
+import { Constants } from 'expo';
+import { NavigationScreenProps } from 'react-navigation';
+import { Text } from 'react-native';
+import { View } from 'react-native';
 
 interface State {
   webViewUserAgent: string | undefined
@@ -11,27 +11,27 @@ interface State {
 
 export class ConstantsScreen extends Component<NavigationScreenProps, State> {
   constructor(props: NavigationScreenProps, context?: any) {
-    super(props, context)
+    super(props, context);
 
     this.state = {
-      webViewUserAgent: undefined
-    }
+      webViewUserAgent: undefined,
+    };
 
-    this.updateWebViewUserAgent()
+    this.updateWebViewUserAgent();
   }
 
   public static navigationOptions = {
-    title: 'Constants'
-  }
+    title: 'Constants',
+  };
 
   public render() {
-    const navigate = this.props.navigation.navigate
+    const navigate = this.props.navigation.navigate;
 
     return (
       <View
         style={{
           flex: 1,
-          padding: 10
+          padding: 10,
         }}
       >
         <Text>appOvernership: "{Constants.appOwnership}"</Text>
@@ -48,13 +48,13 @@ export class ConstantsScreen extends Component<NavigationScreenProps, State> {
         <Text onPress={() => navigate('SystemFonts')}>systemFonts: (Click to see)</Text>
         <Text>webViewUserAgent: "{this.state.webViewUserAgent}"</Text>
       </View>
-    )
+    );
   }
 
   private async updateWebViewUserAgent() {
-    const userAgent = await Constants.getWebViewUserAgentAsync()
+    const userAgent = await Constants.getWebViewUserAgentAsync();
     this.setState({
-      webViewUserAgent: userAgent
-    })
+      webViewUserAgent: userAgent,
+    });
   }
 }

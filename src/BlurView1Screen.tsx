@@ -1,16 +1,16 @@
-import * as React from 'react'
-import { BlurView } from 'expo'
-import { Component } from 'react'
-import { Image } from 'react-native'
-import { StyleSheet } from 'react-native'
-import { View } from 'react-native'
+import * as React from 'react';
+import { BlurView } from 'expo';
+import { Component } from 'react';
+import { Image } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { View } from 'react-native';
 
-const expoImageUrl = 'https://s3.amazonaws.com/exp-icon-assets/ExpoEmptyManifest_192.png'
+const expoImageUrl = 'https://s3.amazonaws.com/exp-icon-assets/ExpoEmptyManifest_192.png';
 
 export class BlurView1Screen extends Component {
   public static navigationOptions = {
-    title: 'BlueView 1'
-  }
+    title: 'BlueView 1',
+  };
 
   public render() {
     return (
@@ -19,7 +19,7 @@ export class BlurView1Screen extends Component {
           alignItems: 'center',
           backgroundColor: '#fff',
           flex: 1,
-          justifyContent: 'center'
+          justifyContent: 'center',
         }}
       >
         {/* This image is blurred because BlurView is positioned on top of it. */}
@@ -27,19 +27,19 @@ export class BlurView1Screen extends Component {
           source={{ uri: expoImageUrl }}
           style={{
             height: 192,
-            width: 192
+            width: 192,
           }}
         />
         <BlurView
           intensity={50}
           style={StyleSheet.absoluteFill}
-          tint="light"
+          tint='light'
         >
           <Image
             source={{ uri: expoImageUrl }}
             style={{
               height: 96,
-              width: 96
+              width: 96,
             }}
           />
         </BlurView>
@@ -47,10 +47,10 @@ export class BlurView1Screen extends Component {
           source={{ uri: expoImageUrl }}
           style={{
             height: 48,
-            width: 48
+            width: 48,
           }}
         />
       </View>
-    )
+    );
   }
 }

@@ -1,14 +1,14 @@
-import * as React from 'react'
-import { Accelerometer } from 'expo'
-import { Component } from 'react'
-import { NavigationScreenProps } from 'react-navigation'
-import { StyleSheet } from 'react-native'
-import { Subscription } from 'expo-core'
-import { Text } from 'react-native'
-import { TouchableOpacity } from 'react-native'
-import { View } from 'react-native'
+import * as React from 'react';
+import { Accelerometer } from 'expo';
+import { Component } from 'react';
+import { NavigationScreenProps } from 'react-navigation';
+import { StyleSheet } from 'react-native';
+import { Subscription } from 'expo-core';
+import { Text } from 'react-native';
+import { TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 
-import { ThreeAxisMeasurement } from './ThreeAxisMeasurement'
+import { ThreeAxisMeasurement } from './ThreeAxisMeasurement';
 
 interface State {
   accelerometerData: ThreeAxisMeasurement
@@ -16,42 +16,42 @@ interface State {
 
 export class AccelerometerScreen extends Component<NavigationScreenProps, State> {
   constructor(props: NavigationScreenProps, context?: any) {
-    super(props, context)
+    super(props, context);
 
     this.state = {
       accelerometerData: {
         x: 0,
         y: 0,
-        z: 0
-      }
-    }
+        z: 0,
+      },
+    };
   }
 
   public static navigationOptions = {
-    title: 'Accelerometer'
-  }
+    title: 'Accelerometer',
+  };
 
-  private subscription: Subscription | undefined
+  private subscription: Subscription | undefined;
 
   public componentDidMount() {
-    this.toggleSubscription()
+    this.toggleSubscription();
   }
 
   public componentWillUnmount() {
-    this.unsubscribe()
+    this.unsubscribe();
   }
 
   public render() {
-    const x = AccelerometerScreen.roundToTwoDecimals(this.state.accelerometerData.x)
-    const y = AccelerometerScreen.roundToTwoDecimals(this.state.accelerometerData.y)
-    const z = AccelerometerScreen.roundToTwoDecimals(this.state.accelerometerData.z)
+    const x = AccelerometerScreen.roundToTwoDecimals(this.state.accelerometerData.x);
+    const y = AccelerometerScreen.roundToTwoDecimals(this.state.accelerometerData.y);
+    const z = AccelerometerScreen.roundToTwoDecimals(this.state.accelerometerData.z);
 
     return (
       <View
         style={{
           backgroundColor: '#fff',
           marginTop: 15,
-          paddingHorizontal: 10
+          paddingHorizontal: 10,
         }}
       >
         <Text>Accelerometer:</Text>
@@ -60,7 +60,7 @@ export class AccelerometerScreen extends Component<NavigationScreenProps, State>
           style={{
             alignItems: 'stretch',
             flexDirection: 'row',
-            marginTop: 15
+            marginTop: 15,
           }}
         >
           <TouchableOpacity
@@ -83,45 +83,44 @@ export class AccelerometerScreen extends Component<NavigationScreenProps, State>
           </TouchableOpacity>
         </View>
       </View>
-    )
+    );
   }
 
   private static roundToTwoDecimals(value: number | undefined): number {
     if (value === undefined) {
-      return 0
+      return 0;
     }
 
-    return Math.floor(value * 100) / 100
+    return Math.floor(value * 100) / 100;
   }
 
   private fast() {
-    Accelerometer.setUpdateInterval(16)
+    Accelerometer.setUpdateInterval(16);
   }
 
   private slow() {
-    Accelerometer.setUpdateInterval(1000)
+    Accelerometer.setUpdateInterval(1000);
   }
 
   private subscribe() {
     this.subscription = Accelerometer.addListener(accelerometerData => {
-      this.setState({ accelerometerData })
-    })
+      this.setState({ accelerometerData });
+    });
   }
 
   private toggleSubscription() {
     if (this.subscription) {
-      this.unsubscribe()
-    }
-    else {
-      this.subscribe()
+      this.unsubscribe();
+    } else {
+      this.subscribe();
     }
   }
 
   private unsubscribe() {
     if (this.subscription !== undefined) {
-      this.subscription.remove()
+      this.subscription.remove();
     }
-    this.subscription = undefined
+    this.subscription = undefined;
   }
 }
 
@@ -131,11 +130,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee',
     flex: 1,
     justifyContent: 'center',
-    padding: 10
+    padding: 10,
   },
   middleButton: {
     borderColor: '#ccc',
     borderLeftWidth: 1,
-    borderRightWidth: 1
-  }
-})
+    borderRightWidth: 1,
+  },
+});

@@ -1,32 +1,32 @@
-import * as React from 'react'
-import { Alert } from 'react-native'
-import { Component } from 'react'
-import { Facebook } from 'expo'
+import * as React from 'react';
+import { Alert } from 'react-native';
+import { Component } from 'react';
+import { Facebook } from 'expo';
 // tslint:disable-next-line:no-implicit-dependencies
-import { FontAwesome } from '@expo/vector-icons'
-import { NavigationScreenProps } from 'react-navigation'
-import { Text } from 'react-native'
-import { TouchableOpacity } from 'react-native'
-import { View } from 'react-native'
+import { FontAwesome } from '@expo/vector-icons';
+import { NavigationScreenProps } from 'react-navigation';
+import { Text } from 'react-native';
+import { TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 
 export class FacebookScreen extends Component<NavigationScreenProps> {
   public static navigationOptions = {
-    title: 'Facebook'
-  }
+    title: 'Facebook',
+  };
 
   public async logIn() {
     const loginResponse = await Facebook.logInWithReadPermissionsAsync('1487822177919606', {
-      permissions: ['public_profile']
-    })
+      permissions: ['public_profile'],
+    });
 
     if (loginResponse.type === 'success') {
       // Get the user's name using Facebook's Graph API.
       const response = await fetch(
-        `https://graph.facebook.com/me?access_token=${loginResponse.token}`)
+        `https://graph.facebook.com/me?access_token=${loginResponse.token}`);
       Alert.alert(
         'Logged in!',
-        `Hi ${(await response.json()).name}!`
-      )
+        `Hi ${(await response.json()).name}!`,
+      );
     }
   }
 
@@ -37,7 +37,7 @@ export class FacebookScreen extends Component<NavigationScreenProps> {
           alignItems: 'center',
           backgroundColor: '#fff',
           flex: 1,
-          justifyContent: 'center'
+          justifyContent: 'center',
         }}
       >
         <TouchableOpacity onPress={this.logIn}>
@@ -49,17 +49,17 @@ export class FacebookScreen extends Component<NavigationScreenProps> {
               flexDirection: 'row',
               height: 40,
               paddingLeft: 6,
-              width: 250
+              width: 250,
             }}
           >
-            <FontAwesome name="facebook-official" size={28} style={{ color: '#fff' }} />
+            <FontAwesome name='facebook-official' size={28} style={{ color: '#fff' }} />
             <Text
               style={{
                 color: '#fff',
                 flexGrow: 1,
                 fontSize: 20,
                 fontWeight: '500',
-                textAlign: 'center'
+                textAlign: 'center',
               }}
             >
               Log in With Facebook
@@ -67,6 +67,6 @@ export class FacebookScreen extends Component<NavigationScreenProps> {
           </View>
         </TouchableOpacity>
       </View>
-    )
+    );
   }
 }
